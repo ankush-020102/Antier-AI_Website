@@ -7,6 +7,8 @@ import Footer from "./components/layout/Footer";
 
 import Home from "./pages/Home";
 import AiMlSolutions from "./pages/AiMlSolutions";
+import GenerativeAiDevelopment from "./pages/GenerativeAiDevelopment";
+import AiAgentDevelopment from "./pages/AiAgentDevelopment";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/solutions" element={<AiMlSolutions />} />
+            <Route path="/generative-ai-development" element={<GenerativeAiDevelopment />} />
+            <Route path="/ai-agent-development" element={<AiAgentDevelopment />} />
           </Routes>
         </main>
 
