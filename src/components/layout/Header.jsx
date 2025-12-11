@@ -8,6 +8,8 @@ const Header = () => {
 
   const navLinks = [
     { name: "AI ML Solutions", path: "/solutions" },
+    { name: "Generative AI", path: "/generative-ai-development" },
+    { name: "AI Agents", path: "/ai-agent-development" },
     { name: "Industries", path: "/industries" },
     { name: "Case Studies", path: "/case-studies" },
     { name: "Resources", path: "/resources" },
