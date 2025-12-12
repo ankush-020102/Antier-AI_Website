@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SiAmazon, SiAnthropic, SiOpenai, SiGoogle, SiMeta, SiGooglegemini } from "react-icons/si";
@@ -12,6 +12,8 @@ const GenerativeAiDevelopment = () => {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
     };
+
+    const [activeFAQ, setActiveFAQ] = useState(null);
 
     const staggerContainer = {
         hidden: { opacity: 0 },
@@ -364,36 +366,59 @@ const GenerativeAiDevelopment = () => {
             </section>
 
             {/* FAQ Section */}
-            <section className="py-20 bg-slate-900">
+            {/* FAQ Section */}
+            <section className="py-24 bg-slate-900 border-t border-slate-800">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bold text-white mb-12 text-center"
-                    >
-                        Frequently Asked Questions
-                    </motion.h2>
-                    <div className="space-y-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+                        <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+                            Common questions about our Generative AI development services and solutions.
+                        </p>
+                    </div>
+
+                    <div className="space-y-4">
                         {[
-                            { q: "What is Generative AI?", a: "Generative AI refers to artificial intelligence algorithms that can generate new content, including text, images, audio, and video, based on training data." },
-                            { q: "What is the cost of developing a robust Generative AI solution?", a: "The cost varies depending on the complexity, features, and specific requirements of the project. Contact us for a tailored quote." },
-                            { q: "How long does it take to create a generative AI solution?", a: "Development time depends on the scope of the project, but typically ranges from a few weeks to several months." },
-                            { q: "What are the benefits of utilizing generative AI solutions?", a: "Benefits include increased efficiency, enhanced creativity, cost reduction, and improved decision-making capabilities." },
-                            { q: "What is Antier’s generative AI integration process?", a: "Our process involves consultation, strategy formulation, model development or selection, integration, and ongoing support." }
-                        ].map((faq, index) => (
-                            <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                key={index}
-                                className="bg-slate-800 rounded-lg p-6 border border-slate-700 hover:border-purple-500 transition-colors"
-                            >
-                                <h3 className="text-lg font-semibold text-white mb-2">{faq.q}</h3>
-                                <p className="text-slate-400">{faq.a}</p>
-                            </motion.div>
-                        ))}
+                            { question: "What is Generative AI?", answer: "Generative AI refers to artificial intelligence algorithms that can generate new content, including text, images, audio, and video, based on training data." },
+                            { question: "What is the cost of developing a robust Generative AI solution?", answer: "The cost varies depending on the complexity, features, and specific requirements of the project. Contact us for a tailored quote." },
+                            { question: "How long does it take to create a generative AI solution?", answer: "Development time depends on the scope of the project, but typically ranges from a few weeks to several months." },
+                            { question: "What are the benefits of utilizing generative AI solutions?", answer: "Benefits include increased efficiency, enhanced creativity, cost reduction, and improved decision-making capabilities." },
+                            { question: "What is Antier’s generative AI integration process?", answer: "Our process involves consultation, strategy formulation, model development or selection, integration, and ongoing support." }
+                        ].map((faq, index) => {
+                            const isOpen = activeFAQ === index;
+                            return (
+                                <div
+                                    key={index}
+                                    className={`bg-slate-800 rounded-xl border transition-all duration-300 overflow-hidden ${isOpen ? 'border-purple-500 shadow-lg ring-1 ring-purple-500/20' : 'border-slate-700 shadow-sm hover:shadow-md hover:border-purple-400'}`}
+                                >
+                                    <button
+                                        onClick={() => setActiveFAQ(isOpen ? null : index)}
+                                        className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none group"
+                                    >
+                                        <span className={`text-lg font-semibold transition-colors duration-300 ${isOpen ? 'text-purple-400' : 'text-white group-hover:text-purple-400'}`}>
+                                            {faq.question}
+                                        </span>
+                                        <span className={`ml-4 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-500 text-white ${isOpen ? 'rotate-180' : ''}`}>
+                                            {isOpen ? (
+                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                                                </svg>
+                                            ) : (
+                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                                </svg>
+                                            )}
+                                        </span>
+                                    </button>
+                                    <div
+                                        className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                                    >
+                                        <div className="px-6 pb-6 text-slate-400 leading-relaxed">
+                                            {faq.answer}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
