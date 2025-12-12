@@ -63,7 +63,7 @@ const AiAgentDevelopment = () => {
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.1 }}
                         variants={fadeInUp}
                         className="text-center mb-16"
                     >

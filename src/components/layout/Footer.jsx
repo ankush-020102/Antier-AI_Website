@@ -11,27 +11,27 @@ const Footer = () => {
   return (
     <footer className="bg-[#021021] text-white pt-16 pb-6 border-t border-slate-800 font-sans">
       <div className="w-full px-4 md:px-8 lg:px-12">
-        
+
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
-          
+
           {/* Column 1: Quick Links */}
           <div>
-            <h4 className="text-[24px] leading-[34px] font-bold font-['Open_Sans'] mb-6">Quick Links</h4>
-            <ul className="">
+            {/* <h4 className="text-[24px] leading-[34px] font-bold font-['Open_Sans'] mb-6">Quick Links</h4> */}
+            {/* <ul className="">
               {['About Us', 'Partners', 'Careers', 'Blockchain', 'Gaming', 'Asset Tokenization', 'Web3 Consulting'].map((item) => (
                 <li key={item}>
                   <a href="#" className="block text-[#F0F6FC] text-[16px] leading-[24px] pt-0 pb-[15px] hover:text-cyan-400 transition-colors">{item}</a>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
 
           {/* Column 2: Connect */}
           <div>
             <h4 className="text-[24px] leading-[34px] font-bold font-['Open_Sans'] mb-6">Connect</h4>
             <div className="space-y-6 text-sm text-slate-300">
-              
+
               {/* Sales Enquiry */}
               <div className="border-b border-[rgb(154_159_167_/_49%)] pb-6 mb-6">
                 <h6 className="text-[#F0F6FC] font-['Open_Sans'] text-[18px] underline font-medium mb-4">Sales Enquiry</h6>
@@ -88,7 +88,7 @@ const Footer = () => {
           <div>
             <h4 className="text-[24px] leading-[34px] font-bold font-['Open_Sans'] mb-6">Global Presence</h4>
             <div className="space-y-6 text-sm text-slate-300">
-              
+
               <div>
                 <h6 className="text-[#F0F6FC] font-['Open_Sans'] text-[18px] underline font-bold uppercase mb-4">INDIA</h6>
                 <p className="mb-4 pb-4 border-b border-[rgb(154_159_167_/_49%)] font-['Open_Sans'] text-[16px] font-light">C-208, Phase 8B Industrial Area, Mohali, Punjab INDIA, 160059</p>
@@ -154,10 +154,10 @@ const Footer = () => {
           <p className="text-white mb-8 text-lg font-medium">
             Legal clarity for digital assets and blockchain—stay compliant, stay secure. Consult with us!
           </p>
-          
+
           {/* Certification Badges */}
           <div className="flex flex-wrap justify-center gap-6 mb-8 items-center">
-            {[iso, isoLogo, clutch, appFutura, goodFirms,cuchbase, wikki].map((badge, index) => (
+            {[iso, isoLogo, clutch, appFutura, goodFirms, cuchbase, wikki].map((badge, index) => (
               <div key={index} className="w-20 h-20">
                 <img src={badge} alt={`Badge ${index + 1}`} className="w-full h-full object-contain" />
               </div>
