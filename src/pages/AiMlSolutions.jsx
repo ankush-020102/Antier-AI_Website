@@ -5,7 +5,7 @@ import imgNFT from '../assets/ML_AI/NFT.png';
 import imgNPC from '../assets/ML_AI/NPC.png';
 import imgAvatar from '../assets/ML_AI/Personalize_Avatar.png';
 import imgSales from '../assets/ML_AI/Sales.png';
-import imgVirtual from '../assets/ML_AI/Virtual_env.png';
+import imgVirtual from '../assets/ML_AI/Virtual.png';
 
 const AiMlSolutions = () => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
