@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import logo from "../../assets/logo/Antier-new-logo-.svg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,28 +11,21 @@ const Header = () => {
     { name: "AI ML Solutions", path: "/solutions" },
     { name: "Generative AI", path: "/generative-ai-development" },
     { name: "AI Agents", path: "/ai-agent-development" },
-    { name: "Industries", path: "/industries" },
-    { name: "Case Studies", path: "/case-studies" },
-    { name: "Resources", path: "/resources" },
-    { name: "Contact", path: "/contact" },
   ];
 
   const linkClasses = ({ isActive }) =>
     isActive
-      ? "text-cyan-400 text-sm font-medium transition-colors"
-      : "text-slate-300 hover:text-cyan-400 text-sm font-medium transition-colors";
+      ? "text-[#0C9EDA] text-sm font-medium transition-colors"
+      : "text-[#002245] hover:text-[#0C9EDA] text-sm font-medium transition-colors";
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/90 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <NavLink
-              to="/"
-              className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500"
-            >
-              Antier AI
+            <NavLink to="/">
+              <img src={logo} alt="Antier AI" className="h-10" />
             </NavLink>
           </div>
 
@@ -58,7 +52,7 @@ const Header = () => {
           <div className="flex md:hidden">
             <button
               type="button"
-              className="text-slate-300 hover:text-white p-2"
+              className="text-[#002245] hover:text-[#0C9EDA] p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <span className="sr-only">Open menu</span>
@@ -78,7 +72,7 @@ const Header = () => {
 
       {/* ✅ Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-slate-900 border-b border-slate-800">
+        <div className="md:hidden bg-white border-b border-gray-200">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
               <NavLink
@@ -86,8 +80,8 @@ const Header = () => {
                 to={link.path}
                 className={({ isActive }) =>
                   isActive
-                    ? "block px-3 py-2 rounded-md text-base font-medium text-cyan-400 bg-slate-800"
-                    : "block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800"
+                    ? "block px-3 py-2 rounded-md text-base font-medium text-[#0C9EDA] bg-gray-50"
+                    : "block px-3 py-2 rounded-md text-base font-medium text-[#002245] hover:text-[#0C9EDA] hover:bg-gray-50"
                 }
                 onClick={() => setIsMenuOpen(false)}
               >

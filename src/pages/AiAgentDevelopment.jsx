@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FaRobot, FaUserTie, FaChartLine, FaQuestion, FaGraduationCap, FaHeartPulse } from "react-icons/fa6";
 
 const AiAgentDevelopment = () => {
     const fadeInUp = {
@@ -141,14 +142,26 @@ const AiAgentDevelopment = () => {
                         className="grid grid-cols-1 md:grid-cols-2 gap-8"
                     >
                         {[
-                            { title: "Abstraxn Ask AI", desc: "Developer-Focused Automation in Web3. Simplify complex blockchain interactions through a conversational interface." },
-                            { title: "HR Bot", desc: "Simplifying Employee Access to Policies. Reduces repetitive queries by up to 40% and eases HR workloads." },
-                            { title: "Qatobit", desc: "Financial Insights on Demand. Delivers instant, real-time financial data to crypto users via text or voice." },
-                            { title: "FAQ Bot", desc: "Automating Support and Onboarding. Handles fixed queries and evolves to answer open-ended queries." },
-                            { title: "AI Mentor", desc: "Personalized Academic Support. Assists students by providing personalized answers drawn from class materials." },
-                            { title: "EHR Bot", desc: "A Smart Health Companion. Helps users manage health-related queries by leveraging retrieval-augmented generation." }
+                            { title: "Abstraxn Ask AI", icon: <FaRobot className="w-16 h-16 text-emerald-500" />, desc: "Developer-Focused Automation in Web3" },
+                            { title: "HR Bot", icon: <FaUserTie className="w-16 h-16 text-emerald-500" />, desc: "Simplifying Employee Access to Policies" },
+                            { title: "Qatobit", icon: <FaChartLine className="w-16 h-16 text-emerald-500" />, desc: "Financial Insights on Demand" },
+                            { title: "FAQ Bot", icon: <FaQuestion className="w-16 h-16 text-emerald-500" />, desc: "Automating Support and Onboarding" },
+                            { title: "AI Mentor", icon: <FaGraduationCap className="w-16 h-16 text-emerald-500" />, desc: "Personalized Academic Support" },
+                            { title: "EHR Bot", icon: <FaHeartPulse className="w-16 h-16 text-emerald-500" />, desc: "A Smart Health Companion" }
                         ].map((platform, index) => (
-                            <motion.div variants={fadeInUp} key={index} className="bg-white border border-slate-200 p-8 rounded-xl hover:shadow-xl transition-all">
+                            <motion.div
+                                variants={fadeInUp}
+                                key={index}
+                                className="bg-white border border-slate-200 p-8 rounded-xl hover:shadow-xl transition-all flex flex-col items-center text-center group"
+                                whileHover={{ y: -10 }}
+                            >
+                                <motion.div
+                                    className="mb-6 p-4 bg-emerald-50 rounded-full group-hover:bg-emerald-100 transition-colors"
+                                    animate={{ y: [0, -10, 0] }}
+                                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
+                                >
+                                    {platform.icon}
+                                </motion.div>
                                 <h3 className="text-xl font-bold text-slate-900 mb-3">{platform.title}</h3>
                                 <p className="text-slate-600 leading-relaxed">{platform.desc}</p>
                             </motion.div>
@@ -157,7 +170,7 @@ const AiAgentDevelopment = () => {
                 </div>
             </section>
 
-            {/* Industries Section */}
+            {/* Industries Section
             <section className="py-20 bg-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
@@ -188,7 +201,7 @@ const AiAgentDevelopment = () => {
                         ))}
                     </motion.div>
                 </div>
-            </section>
+            </section> */}
 
             {/* FAQ Section */}
             <section className="py-20 bg-slate-50">
