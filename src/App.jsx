@@ -2,6 +2,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import ScrollToTop from "./components/layout/ScrollToTop";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 
@@ -13,6 +14,7 @@ import AiAgentDevelopment from "./pages/AiAgentDevelopment";
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-slate-900 text-white">
         <Header />
 
