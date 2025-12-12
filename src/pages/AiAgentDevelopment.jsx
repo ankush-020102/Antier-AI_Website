@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaRobot, FaUserTie, FaChartLine, FaQuestion, FaGraduationCap, FaHeartPulse } from "react-icons/fa6";
+
+// Import Images
+import Ai_mentor1 from '../assets/aiagents/Ai_mentor1.png';
+import Ai_mentor2 from '../assets/aiagents/Ai_mentor2.png';
+import Ai_mentor3 from '../assets/aiagents/Ai_mentor3.png';
+import Ai_mentor4 from '../assets/aiagents/Ai_mentor4.png';
+import healthaera from '../assets/aiagents/healthaera.png';
+import metaverse_bot1 from '../assets/aiagents/metaverse_bot1.png';
+import metaverse_bot2 from '../assets/aiagents/metaverse_bot2.png';
+import metaverse_bot3 from '../assets/aiagents/metaverse_bot3.png';
+import metaverse_bot4 from '../assets/aiagents/metaverse_bot4.png';
+import qatobit1 from '../assets/aiagents/qatobit1.png';
+import qatobit2 from '../assets/aiagents/qatobit2.png';
+import abstraxn from '../assets/aiagents/abstraxn_ask_ai.webp';
+import hrBot from '../assets/aiagents/hr_bot.webp';
+import faqBot from '../assets/aiagents/faq_bot.webp';
+import staleLead from '../assets/aiagents/stale_lead_revival.webp';
+import salesBot from '../assets/aiagents/sales_bot.webp';
 
 const AiAgentDevelopment = () => {
     const fadeInUp = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
     };
+
+    const [activeFAQ, setActiveFAQ] = useState(null);
 
     const staggerContainer = {
         hidden: { opacity: 0 },
@@ -17,6 +37,138 @@ const AiAgentDevelopment = () => {
                 staggerChildren: 0.2
             }
         }
+    };
+
+    // Grouped Platform Data
+    const platforms = [
+        {
+            title: "Abstraxn Ask AI",
+            description: "Abstraxn AI is one of the leading Web3 custom AI agent builders, designed to simplify complex blockchain interactions through a conversational, chat-based interface. Instead of navigating multiple dApps or dashboards, users can perform on-chain transactions such as token swaps, transfers, staking, and liquidity operations using natural language commands.",
+            images: [abstraxn]
+        },
+        {
+            title: "HR Bot",
+            description: "The HR Bot simplifies employee access to company policies. Employees can ask questions in plain English, such as about maternity leave, and the bot will quickly retrieve and provide the relevant information directly from HR documents. This reduces repetitive queries by up to 40%, keeps information current, and eases HR workloads.",
+            images: [hrBot]
+        },
+        {
+            title: "Qatobit",
+            description: "Qatobit delivers instant, real-time financial data to crypto users via text or voice. Whether it’s checking Bitcoin’s price or tracking blockchain events, Qatobit provides tailored responses that suit individual needs. This always-on advisor reduces research time and empowers users to make informed decisions quickly, even in volatile markets.",
+            images: [qatobit1, qatobit2]
+        },
+        {
+            title: "FAQ Bot",
+            description: "The FAQ Bot automates customer support & onboarding and offers role-specific answers. Initially, it handles fixed queries like assignment submissions or material uploads. In later phases, it evolves to answer open-ended queries and learns from user interactions to refine responses.",
+            images: [faqBot]
+        },
+        {
+            title: "AI Mentor",
+            description: "AI Mentor assists students by providing personalized answers drawn from class materials. A student can simply ask about a topic like photosynthesis, and the system will pull relevant curriculum content, offering a clear, concise explanation. This reduces tutor reliance, scales to support many users, and boosts academic performance by delivering relevant, curriculum-based content.",
+            images: [Ai_mentor1, Ai_mentor2, Ai_mentor3, Ai_mentor4]
+        },
+        {
+            title: "EHR Bot",
+            description: "EHR Bot helps users manage health-related queries by leveraging retrieval-augmented generation for general or personalized insights. General health queries are answered by AI models, while personalized queries pull data from secure records for custom responses. With privacy assured, this bot eases provider workloads, clarifies medical information, and promotes proactive health management.",
+            images: [healthaera]
+        },
+        {
+            title: "Metaverse Bot",
+            description: "Metaverse Bot tracks real-world energy usage through virtual activities. Users input appliance data, like AC runtime, and the bot calculates costs, emissions, and potential savings. By making comparisons to everyday activities, it encourages sustainable practices and links virtual play to real-world environmental impacts, all without needing complex calculations.",
+            images: [metaverse_bot1, metaverse_bot2, metaverse_bot3, metaverse_bot4]
+        },
+        {
+            title: "Stale Lead Revival Engine",
+            description: "The Stale Lead Revival Engine re-engages CRM leads that have been inactive for over three months by sending personalized messages. It sparks conversations and routes leads to nurturing, support, or sales teams, handling responses with tailored wit when needed. Revival rates of 20-30% help businesses convert overlooked leads into fresh opportunities.",
+            images: [staleLead]
+        },
+        {
+            title: "Sales Bot",
+            description: "Sales Bot streamlines customer support across multiple channels, providing instant responses to inquiries, qualifying leads, and ensuring a seamless customer experience 24/7.",
+            images: [salesBot]
+        }
+    ];
+
+    // Internal Card Component for Slideshow
+    const PlatformCard = ({ platform }) => {
+        const [imgIndex, setImgIndex] = useState(0);
+
+        useEffect(() => {
+            if (platform.images.length <= 1) return;
+            const interval = setInterval(() => {
+                setImgIndex((prev) => (prev + 1) % platform.images.length);
+            }, 3000);
+            return () => clearInterval(interval);
+        }, [platform.images]);
+
+        return (
+            <div className="group/card h-[600px] relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/50 shadow-2xl hover:shadow-emerald-500/20 transition-all duration-500 hover:-translate-y-2">
+                {/* Image Container */}
+                <div className="absolute inset-0 w-full h-2/3 bg-slate-900 flex items-center justify-center overflow-hidden">
+                    {/* Blurred Background Layer */}
+                    {platform.images.map((img, idx) => (
+                        <motion.div
+                            key={`bg-${idx}`}
+                            initial={{ opacity: 0 }}
+                            animate={{
+                                opacity: idx === imgIndex ? 0.6 : 0,
+                            }}
+                            transition={{ duration: 0.8 }}
+                            className="absolute inset-0 w-full h-full z-0"
+                        >
+                            <img
+                                src={img}
+                                alt=""
+                                className="w-full h-full object-cover blur-2xl scale-110"
+                            />
+                        </motion.div>
+                    ))}
+
+                    {/* Main Image Layer */}
+                    <div className="relative w-full h-full z-10">
+                        {platform.images.map((img, idx) => (
+                            <motion.img
+                                key={idx}
+                                src={img}
+                                alt={`${platform.title} ${idx + 1}`}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{
+                                    opacity: idx === imgIndex ? 1 : 0,
+                                    scale: idx === imgIndex ? 1 : 0.9
+                                }}
+                                transition={{ duration: 0.8 }}
+                                className="absolute inset-0 w-full h-full object-contain drop-shadow-2xl"
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 w-full h-1/3 bg-slate-900 border-t border-slate-700 p-6 flex flex-col justify-between group-hover/card:bg-slate-800 transition-colors">
+                    <div>
+                        <div className="flex items-center justify-between mb-3">
+                            <h3 className="text-2xl font-bold text-white group-hover/card:text-emerald-400 transition-colors">
+                                {platform.title}
+                            </h3>
+                            <div className="flex space-x-1">
+                                {platform.images.map((_, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`w-2 h-2 rounded-full transition-colors ${idx === imgIndex ? 'bg-emerald-500' : 'bg-slate-600'}`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                        <p className="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                            {platform.description}
+                        </p>
+                    </div>
+
+                    <div className="mt-4 flex items-center text-emerald-500 text-sm font-semibold opacity-0 transform translate-y-4 group-hover/card:opacity-100 group-hover/card:translate-y-0 transition-all duration-300">
+                        Explore Platform <FaChartLine className="ml-2" />
+                    </div>
+                </div>
+            </div>
+        );
     };
 
     return (
@@ -120,8 +272,8 @@ const AiAgentDevelopment = () => {
                 </div>
             </section>
 
-            {/* Platforms Section */}
-            <section className="py-20 bg-slate-50">
+            {/* Platforms Section - Carousel */}
+            <section className="py-20 bg-slate-50 relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
@@ -133,40 +285,16 @@ const AiAgentDevelopment = () => {
                         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
                             Our Enterprise-Grade <span className="text-emerald-600">AI Agent Platforms</span>
                         </h2>
+                        <p className="text-slate-600 max-w-3xl mx-auto">
+                            Explore our cutting-edge AI agent platforms designed to revolutionize various industries with intelligent automation and insights.
+                        </p>
                     </motion.div>
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={staggerContainer}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-8"
-                    >
-                        {[
-                            { title: "Abstraxn Ask AI", icon: <FaRobot className="w-16 h-16 text-emerald-500" />, desc: "Developer-Focused Automation in Web3" },
-                            { title: "HR Bot", icon: <FaUserTie className="w-16 h-16 text-emerald-500" />, desc: "Simplifying Employee Access to Policies" },
-                            { title: "Qatobit", icon: <FaChartLine className="w-16 h-16 text-emerald-500" />, desc: "Financial Insights on Demand" },
-                            { title: "FAQ Bot", icon: <FaQuestion className="w-16 h-16 text-emerald-500" />, desc: "Automating Support and Onboarding" },
-                            { title: "AI Mentor", icon: <FaGraduationCap className="w-16 h-16 text-emerald-500" />, desc: "Personalized Academic Support" },
-                            { title: "EHR Bot", icon: <FaHeartPulse className="w-16 h-16 text-emerald-500" />, desc: "A Smart Health Companion" }
-                        ].map((platform, index) => (
-                            <motion.div
-                                variants={fadeInUp}
-                                key={index}
-                                className="bg-white border border-slate-200 p-8 rounded-xl hover:shadow-xl transition-all flex flex-col items-center text-center group"
-                                whileHover={{ y: -10 }}
-                            >
-                                <motion.div
-                                    className="mb-6 p-4 bg-emerald-50 rounded-full group-hover:bg-emerald-100 transition-colors"
-                                    animate={{ y: [0, -10, 0] }}
-                                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
-                                >
-                                    {platform.icon}
-                                </motion.div>
-                                <h3 className="text-xl font-bold text-slate-900 mb-3">{platform.title}</h3>
-                                <p className="text-slate-600 leading-relaxed">{platform.desc}</p>
-                            </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+                        {platforms.map((platform, index) => (
+                            <PlatformCard key={index} platform={platform} />
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
@@ -204,35 +332,58 @@ const AiAgentDevelopment = () => {
             </section> */}
 
             {/* FAQ Section */}
-            <section className="py-20 bg-slate-50">
+            {/* FAQ Section */}
+            <section className="py-24 bg-slate-50 border-t border-slate-200">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center"
-                    >
-                        Frequently Asked Questions
-                    </motion.h2>
-                    <div className="space-y-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
+                        <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+                            Common questions about our AI Agent development services and solutions.
+                        </p>
+                    </div>
+
+                    <div className="space-y-4">
                         {[
-                            { q: "What is the timeline for developing and deploying an AI agent?", a: "Timelines vary based on complexity, but typically range from 4-12 weeks." },
-                            { q: "What is the cost of AI agent development?", a: "Costs depend on features and integration requirements. Contact us for a detailed quote." },
-                            { q: "How are AI agents different from traditional automation tools?", a: "AI agents can make decisions and learn, whereas traditional tools follow fixed rules." },
-                            { q: "Can AI agents seamlessly integrate with existing systems?", a: "Yes, our agents are designed to integrate with your current tech stack via APIs." }
-                        ].map((faq, index) => (
-                            <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                key={index}
-                                className="bg-white rounded-lg p-6 border border-slate-200 shadow-sm"
-                            >
-                                <h3 className="text-lg font-semibold text-slate-900 mb-2">{faq.q}</h3>
-                                <p className="text-slate-600">{faq.a}</p>
-                            </motion.div>
-                        ))}
+                            { question: "What is the timeline for developing and deploying an AI agent?", answer: "Timelines vary based on complexity, but typically range from 4-12 weeks." },
+                            { question: "What is the cost of AI agent development?", answer: "Costs depend on features and integration requirements. Contact us for a detailed quote." },
+                            { question: "How are AI agents different from traditional automation tools?", answer: "AI agents can make decisions and learn, whereas traditional tools follow fixed rules." },
+                            { question: "Can AI agents seamlessly integrate with existing systems?", answer: "Yes, our agents are designed to integrate with your current tech stack via APIs." }
+                        ].map((faq, index) => {
+                            const isOpen = activeFAQ === index;
+                            return (
+                                <div
+                                    key={index}
+                                    className={`bg-white rounded-xl border transition-all duration-300 overflow-hidden ${isOpen ? 'border-emerald-500 shadow-lg ring-1 ring-emerald-500/20' : 'border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-400'}`}
+                                >
+                                    <button
+                                        onClick={() => setActiveFAQ(isOpen ? null : index)}
+                                        className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none group"
+                                    >
+                                        <span className={`text-lg font-semibold transition-colors duration-300 ${isOpen ? 'text-emerald-700' : 'text-slate-900 group-hover:text-emerald-500'}`}>
+                                            {faq.question}
+                                        </span>
+                                        <span className={`ml-4 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 bg-gradient-to-r from-emerald-500 to-teal-500 text-white ${isOpen ? 'rotate-180' : ''}`}>
+                                            {isOpen ? (
+                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                                                </svg>
+                                            ) : (
+                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                                </svg>
+                                            )}
+                                        </span>
+                                    </button>
+                                    <div
+                                        className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                                    >
+                                        <div className="px-6 pb-6 text-slate-600 leading-relaxed">
+                                            {faq.answer}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
