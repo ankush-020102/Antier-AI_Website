@@ -6,6 +6,7 @@ import imgNPC from '../assets/ML_AI/NPC.png';
 import imgAvatar from '../assets/ML_AI/Personalize_Avatar.png';
 import imgSales from '../assets/ML_AI/Sales.png';
 import imgVirtual from '../assets/ML_AI/Virtual.png';
+import imgTechnologies from '../assets/ML_AI/technologies.png';
 
 const AiMlSolutions = () => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -462,6 +463,18 @@ const AiMlSolutions = () => {
                 </div>
             </section>
 
+            {/* Technologies Used Section */}
+            <section className="py-20 bg-slate-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12">
+                        Technologies <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Used</span>
+                    </h2>
+                    <div className="flex justify-center">
+                        <img src={imgTechnologies} alt="Technologies Used" className="max-w-full h-[450px] object-contain" />
+                    </div>
+                </div>
+            </section>
+
             {/* Industries */}
             {/* <section className="py-20 bg-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -488,7 +501,7 @@ const AiMlSolutions = () => {
             </section> */}
 
             {/* FAQ Section */}
-            <section className="py-24 bg-slate-50 border-t border-slate-200">
+            <section className="py-24 bg-slate-50">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
