@@ -161,7 +161,9 @@ const GenerativeAiDevelopment = () => {
                         viewport={{ once: true }}
                         className="text-3xl md:text-4xl font-bold text-white mb-12 text-center"
                     >
-                        Top Generative AI Use Cases
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                            Top Generative AI Use Cases
+                        </span>
                     </motion.h2>
                     <motion.div
                         initial="hidden"
